@@ -1,4 +1,6 @@
+<!DOCTYPE html>
 <html>
+
 
 <head>
 <!-- Required meta tags -->
@@ -20,30 +22,18 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<!--<a href='uf1.php'>Umfrage eingeben</a><br> -->
-<p>Mit welchem Benutzer soll die Bewertung abgegeben werden ?</p>
-
-<?php 
-	// Includedatei einbinden
-	include_once ("db_funktionen.php");
-	db_connect();
-	//SQL-Anweisung zusammenstellen
-	$sql="Select * from umfrage.Benutzer;";
-	$result = db_query($sql);	
-
-	echo"<form action='uf1.php' method='post'>";
-		echo "<select name='usr'>";
+	<?php
+	include_once("db_funktionen.php");
+	$result = db_query("SELECT ID,BEZEICHNUNG FROM LERNGRUPPE");
+	echo"<form action='uf2.php' method='post'>";
+		echo "<select name='LERNGRUPPE'>";
 		while($row=mysqli_fetch_row($result))
 		{
-			echo "<option >$row[0]</option>";			
+			echo "<option value='$row[0]'>$row[1]</option>";			
 		}
 	echo "</select>";		
-	echo"<input type='submit'name='ok' value='Umfrage eingeben'>";
-	echo"</form>";		
-
-
-	echo "<hr>";
-	echo "<a href='uf2a.php'>Umfrage auswerten</a>";
-?>
+	echo"<input type='submit'name='ok' value='Bewertung anzeigen'>";
+	echo"</form>";	
+	?>
 </body>
 </html>
